@@ -29,6 +29,7 @@
     "eslint": "^4.2.0",
     "expo": "^18.0.3",
     "express": "^4.15.3",
+    "mongoose": "^4.11.1",
     "morgan": "^1.8.2",
     "react": "16.0.0-alpha.12",
     "react-native": "^0.45.1",
