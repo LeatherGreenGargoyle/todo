@@ -55,35 +55,13 @@ const listsMethods = {
           } else {
             User.findById(req.body.userId, (err, foundUser) => {
               let list = foundUser.lists.id(req.body.listId)
-              list.set(req.body.tasks)
-
+              list.set(foundList)
+              console.log(list)
               foundUser.save((err, savedUser) => {
                 if (err) console.log(err)
                 if (savedUser) res.send(savedUser)
               })
             })
-            // User.findById(req.body.userId, (err, foundUser) => {
-            //   if (err) console.log(err)
-            //   if (foundUser) {
-            //     let temp = foundUser.lists
-            //     let updateIndex
-            //     for (let i = 0; i < temp.length; i++) {
-            //       console.log('comparing', temp[i]._id.toString() == foundList._id.toString())
-            //       if (temp[i]._id.toString() == foundList._id.toString()) {
-            //         console.log('found match')
-            //         updateIndex = i
-            //         break
-            //       }
-            //     }
-            //     temp[updateIndex] = foundList
-            //     foundUser.lists = temp
-            //     console.log(foundUser.lists[0].tasks[0])
-            //     // foundUser.save((err) => {
-            //     //   console.log(err)
-            //     //   res.send(foundUser)
-            //     // })
-            //   }
-            // })
           }
         })
       }
