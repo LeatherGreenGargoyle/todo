@@ -24,6 +24,16 @@ const listsMethods = {
       }
     })
   },
+
+  delete: (req, res) => {
+    User.findById(req.body.userId, (err, foundUser) => {
+      if (err) console.log(err)
+      if (foundUser) {
+        foundUser.lists.pull(req.body.listId)
+        res.send(foundUser)
+      }
+    })
+  },
 }
 
 module.exports = listsMethods
