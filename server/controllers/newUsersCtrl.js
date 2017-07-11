@@ -1,6 +1,6 @@
 const User = require('../../db').User
 
-const newUser = {
+const newUsersMethods = {
   create: (req, res) => {
     User.create({
       userName: req.body.username,
@@ -16,4 +16,4 @@ const newUser = {
   },
 }
 
-module.exports = newUser
+module.exports = newUsersMethods
