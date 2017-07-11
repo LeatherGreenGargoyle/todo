@@ -8,7 +8,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(morgan('dev'))
 
-// require('./routes')(app)
+require('./routes')(app)
 
 const port = process.env.PORT || 3000
 app.listen(port, () => {
