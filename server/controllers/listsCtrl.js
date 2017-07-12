@@ -56,7 +56,6 @@ const listsMethods = {
             User.findById(req.body.userId, (err, foundUser) => {
               let list = foundUser.lists.id(req.body.listId)
               list.set(foundList)
-              console.log(list)
               foundUser.save((err, savedUser) => {
                 if (err) console.log(err)
                 if (savedUser) res.send(savedUser)
