@@ -7,26 +7,19 @@ const listsMethods = {
       user: req.body.user,
       title: req.body.title,
       tasks: req.body.tasks,
-    }, (err, newList) => {
-      if (err) {
-        console.log(err)
-        res.sendStatus(400)
-      } else if (newList) {
-        User.findById(req.body.user.toString(), (err, foundUser) => {
-          if (err) console.log(err)
-
-          foundUser.lists.push(newList)
-          foundUser.save((err) => {
-            if (err) {
-              console.log(err)
-              res.sendStatus(400)
-            } else {
-              res.sendStatus(200)
-            }
-          })
-        })
-      }
     })
+      .then((newList) => {
+        return Promise.all([
+          newList,
+          User.findById(req.body.user.toString())
+        ])
+      })
+      .then(([newList, foundUser]) => {
+        foundUser.lists.push(newList)
+        return foundUser.save()
+      })
+      .then(savedUser => res.send(savedUser))
+      .catch(err => res.sendStatus(500).send(err))
   },
 
   delete: (req, res) => {
