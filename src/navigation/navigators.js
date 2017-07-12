@@ -16,7 +16,7 @@ export const RootNav = StackNavigator({
   Main: { screen: MainNav },
 })
 
-const RootNavWithState = (dispatch, nav) => (
+const RootNavWithState = ({ dispatch, nav }) => (
   <RootNav navigation={addNavigationHelpers({ dispatch, state: nav })} />
 )
 

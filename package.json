@@ -9,16 +9,13 @@
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.1.0",
     "jest-expo": "~18.0.0",
-    "react-native-scripts": "0.0.40",
     "react-test-renderer": "16.0.0-alpha.12"
   },
-  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
     "startServer": "nodemon server/server.js",
-    "start": "react-native-scripts start",
-    "eject": "react-native-scripts eject",
-    "android": "react-native-scripts android",
-    "ios": "react-native-scripts ios",
+    "start": "react-native start",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
     "test": "node node_modules/jest/bin/jest.js --watch"
   },
   "jest": {
@@ -28,7 +25,6 @@
     "babel-eslint": "^7.2.3",
     "body-parser": "^1.17.2",
     "eslint": "^4.2.0",
-    "expo": "^18.0.3",
     "express": "^4.15.3",
     "mongoose": "^4.11.1",
     "morgan": "^1.8.2",
