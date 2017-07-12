@@ -23,17 +23,14 @@ const listsMethods = {
   },
 
   delete: (req, res) => {
-    User.findById(req.body.userId, (err, foundUser) => {
-      if (err) console.log(err)
-      if (foundUser) {
+    List.findByIdAndRemove(req.body.listId)
+      .then(() => User.findById(req.body.userId))
+      .then((foundUser) => {
         foundUser.lists.pull(req.body.listId)
-        foundUser.save(err => console.log(err))
-        List.findByIdAndRemove(req.body.listId, (err) => {
-          console.log(err)
-        })
-        res.send(foundUser)
-      }
-    })
+        return foundUser.save()
+      })
+      .then(savedUser => res.send(savedUser))
+      .catch(err => res.status(500).send(err))
   },
 
   update: (req, res) => {
