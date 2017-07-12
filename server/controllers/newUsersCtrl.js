@@ -7,7 +7,7 @@ const newUsersMethods = {
       password: req.body.password,
     })
       .then(createdUser => res.send(createdUser))
-      .catch(err => res.sendStatus(500).send(err))
+      .catch(err => res.status(500).send(err))
   },
 }
 

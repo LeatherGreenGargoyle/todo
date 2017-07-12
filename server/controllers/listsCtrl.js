@@ -11,7 +11,7 @@ const listsMethods = {
       .then((newList) => {
         return Promise.all([
           newList,
-          User.findById(req.body.user.toString())
+          User.findById(req.body.user.toString()),
         ])
       })
       .then(([newList, foundUser]) => {
@@ -19,7 +19,7 @@ const listsMethods = {
         return foundUser.save()
       })
       .then(savedUser => res.send(savedUser))
-      .catch(err => res.sendStatus(500).send(err))
+      .catch(err => res.status(500).send(err))
   },
 
   delete: (req, res) => {
@@ -34,28 +34,24 @@ const listsMethods = {
   },
 
   update: (req, res) => {
-    List.findById(req.body.listId, (err, foundList) => {
-      if (err) console.log(err)
-      if (foundList) {
-        foundList.tasks = req.body.tasks
-        foundList.save((err) => {
-          if (err) {
-            console.log(err)
-            res.sendStatus(400)
-          } else {
-            User.findById(req.body.userId, (err, foundUser) => {
-              let list = foundUser.lists.id(req.body.listId)
-              list.set(foundList)
-              foundUser.save((err, savedUser) => {
-                if (err) console.log(err)
-                if (savedUser) res.send(savedUser)
-              })
-            })
-          }
-        })
-      }
-    })
-  }
+    List.findByIdAndUpdate(
+      req.body.listId,
+      { $set: { tasks: req.body.tasks } }
+    )
+      .then((updatedList) => {
+        return Promise.all([
+          updatedList,
+          User.findById(req.body.userId),
+        ])
+      })
+      .then(([updatedList, foundUser]) => {
+        const list = foundUser.lists.id(req.body.listId)
+        list.set(updatedList)
+        return foundUser.save()
+      })
+      .then(savedUser => res.send(savedUser))
+      .catch(err => res.status(500).send(err))
+  },
 }
 
 module.exports = listsMethods
