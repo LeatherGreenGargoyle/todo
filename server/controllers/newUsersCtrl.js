@@ -5,14 +5,9 @@ const newUsersMethods = {
     User.create({
       userName: req.body.username,
       password: req.body.password,
-      lists: [],
-    }, (err, createdUser) => {
-      if (err) {
-        res.send(400)
-      } else {
-        res.send(createdUser)
-      }
     })
+      .then(createdUser => res.send(createdUser))
+      .catch(err => res.sendStatus(500).send(err))
   },
 }
 
