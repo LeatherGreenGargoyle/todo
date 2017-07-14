@@ -6,6 +6,7 @@ export const actionTypes = {
   SET_USER_ID: 'SET_USER_ID',
   SET_LISTS: 'SET_LISTS',
   TOGGLE_SIGNUP: 'TOGGLE_SIGNUP',
+  TOGGLE_LIST: 'TOGGLE_LIST',
 }
 
 const ui = (state = {
@@ -13,8 +14,11 @@ const ui = (state = {
 }, { type, payload }) => {
   switch (type) {
     case actionTypes.TOGGLE_SIGNUP:
-      return { ...state, signupModal: !state.signupModal}
+      return { ...state, signupModal: !state.signupModal }
   
+    case actionTypes.TOGGLE_SIGNUP:
+      return { ...state, listModal: !state.listModal }
+
     default:
       return state
   }

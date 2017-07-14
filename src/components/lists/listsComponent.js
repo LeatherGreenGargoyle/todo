@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Button, View, TextInput } from 'react-native'
 import { connect } from 'react-redux'
 import ListsUI from '../../ui/lists.ui'
+import { actionTypes } from '../../reducers'
 
 const textInputStyles = {
   height: 40,
