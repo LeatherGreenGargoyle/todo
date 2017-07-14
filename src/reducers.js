@@ -15,8 +15,8 @@ const ui = (state = {
   switch (type) {
     case actionTypes.TOGGLE_SIGNUP:
       return { ...state, signupModal: !state.signupModal }
-  
-    case actionTypes.TOGGLE_SIGNUP:
+
+    case actionTypes.TOGGLE_List:
       return { ...state, listModal: !state.listModal }
 
     default:
@@ -52,6 +52,21 @@ const lists = (state = initialLists, { type, payload }) => {
     case actionTypes.SET_LISTS:
       return payload
 
+    default:
+      return state
+  }
+}
+
+
+const initialList = {
+  title: '',
+  tasks: [],
+}
+const currentList = (state = initialList, { type, payload }) => {
+  switch (type) {
+    case actionTypes.TOGGLE_LIST:
+      return payload
+  
     default:
       return state
   }
