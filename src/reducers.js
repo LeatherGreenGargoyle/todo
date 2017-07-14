@@ -37,6 +37,7 @@ const initialLists = [
       {
         body: 'Login to view lists!',
         completed: false,
+        _id: 0,
       },
     ],
   },

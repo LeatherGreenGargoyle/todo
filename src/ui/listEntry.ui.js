@@ -1,5 +1,5 @@
 import React from 'react'
 
-const ListEntryUI => ({ listName, tasks }) => (
+const ListEntryUI = () => ({ listName, tasks }) => (
   <Text>{listName}</Text>
 )
