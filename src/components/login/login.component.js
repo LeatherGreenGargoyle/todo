@@ -41,7 +41,7 @@ class LoginScreen extends Component {
   render() {
     return (
       <View>
-        <Text>Currently Logged In As: {this.props.currentUser}</Text>
+        <Text>Currently Logged In As: {this.props.currentUser.username}</Text>
         <TextInput
           style={textInputStyles}
           onChangeText={inputUsername => this.setState({ inputUsername })}
@@ -54,7 +54,7 @@ class LoginScreen extends Component {
         />
         <Button
           title="Submit"
-          onPress={this.handleSubmit}
+          onPress={() => this.props.login(this.state.inputUsername, this.state.inputPassword)}
         />
       </View>
     )
@@ -62,14 +62,33 @@ class LoginScreen extends Component {
 }
 
 LoginScreen.propTypes = {
-  currentUser: PropTypes.string.isRequired,
+  currentUser: PropTypes.object.isRequired,
+  login: PropTypes.func.isRequired,
+}
+
+const getLists = (username, password) => {
+  return (dispatch) => {
+    const fetchInit = {
+      method: 'POST',
+      body: JSON.stringify({ username, password }),
+      headers: { 'Content-Type': 'application/JSON' },
+    }
+
+    return fetch('http://192.168.1.66:3000/users', fetchInit)
+      .then(data => data.json())
+      .then((userObj) => {
+        dispatch({ type: actionTypes.SET_USER, payload: userObj.userName })
+        dispatch({ type: actionTypes.SET_LISTS, payload: userObj.lists })
+        dispatch({ type: actionTypes.SET_USER_ID, payload: userObj._id })
+      })
+      .catch(err => console.log(err))
+  }
 }
 
 const mapStateToProps = state => ({ currentUser: state.username })
 
 const mapDispatchToProps = dispatch => ({
-  setUser: username => dispatch({ type: actionTypes.SET_USER, payload: username }),
-  setLists: listsArr => dispatch({ type: actionTypes.SET_LISTS, payload: listsArr })
+  login: (username, password) => dispatch(getLists(username, password)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen)

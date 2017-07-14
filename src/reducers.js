@@ -1,27 +1,30 @@
 import { combineReducers } from 'redux'
 import nav from './navigation/nav.duck'
 
-const actionTypes = {
+export const actionTypes = {
   SET_USER: 'SET_USER',
+  SET_USER_ID: 'SET_USER_ID',
   SET_LISTS: 'SET_LISTS',
 }
 
 const initialStates = {
   username: '',
   lists: [],
+  userId: '',
 }
 
-const username = (state = initialStates.currentUser, action) => {
+const username = (state = { username: '' }, action) => {
+  console.log('in reducer', action.payload)
   switch (action.type) {
     case actionTypes.SET_USER:
-      return { ...state, currentUser: action.payload }
+      return { ...state, username: action.payload }
 
     default:
       return state
   }
 }
 
-const lists = (state = initialStates.lists, action) => {
+const lists = (state = { lists: [] }, action) => {
   switch (action.type) {
     case actionTypes.SET_LISTS:
       return { ...state, lists: action.payload }
@@ -31,4 +34,14 @@ const lists = (state = initialStates.lists, action) => {
   }
 }
 
-export default combineReducers({ nav })
+const userId = (state = { userId: '' }, action) => {
+  switch (action.type) {
+    case actionTypes.SET_USER_ID:
+      return { ...state, userId: action.payload }
+
+    default:
+      return state
+  }
+}
+
+export default combineReducers({ nav, username, userId, lists })
