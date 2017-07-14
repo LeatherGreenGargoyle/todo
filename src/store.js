@@ -1,8 +1,9 @@
+import thunk from 'redux-thunk'
 import { applyMiddleware, createStore } from 'redux'
 import { createLogger } from 'redux-logger'
 import rootReducer from './reducers'
 
-const plugins = []
+const plugins = [thunk]
 
 if (process.env.NODE_ENV !== 'production') {
   plugins.push(createLogger({}))

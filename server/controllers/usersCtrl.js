@@ -2,6 +2,7 @@ const User = require('../../db').User
 
 const usersMethods = {
   authenticate: (req, res) => {
+    console.log(req.body)
     User.findOne({
       'userName': req.body.username,
       'password': req.body.password,
