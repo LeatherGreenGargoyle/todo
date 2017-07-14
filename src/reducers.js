@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import nav from './navigation/navigators.duck'
-// import reducers from various ducks
+import mainNav from './navigation/mainNav/mainNav.duck'
+import rootNav from './navigation/rootNav/rootNav.duck'
 
-// insert various reducers below
-export default combineReducers({ nav })
+
+export default combineReducers({ rootNav, mainNav })
