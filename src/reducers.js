@@ -20,30 +20,42 @@ const ui = (state = {
   }
 }
 
-const username = (state = { username: '' }, { type, payload }) => {
+const username = (state = '', { type, payload }) => {
   switch (type) {
     case actionTypes.SET_USER:
-      return { ...state, username: payload }
+      return payload
 
     default:
       return state
   }
 }
 
-const lists = (state = { lists: [] }, { type, payload }) => {
+const initialLists = [
+  {
+    title: 'Login to view lists!',
+    tasks: [
+      {
+        body: 'Login to view lists!',
+        completed: false,
+      },
+    ],
+  },
+]
+
+const lists = (state = initialLists, { type, payload }) => {
   switch (type) {
     case actionTypes.SET_LISTS:
-      return { ...state, lists: payload }
+      return payload
 
     default:
       return state
   }
 }
 
-const userId = (state = { userId: '' }, { type, payload }) => {
+const userId = (state = '', { type, payload }) => {
   switch (type) {
     case actionTypes.SET_USER_ID:
-      return { ...state, userId: payload }
+      return payload
 
     default:
       return state

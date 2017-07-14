@@ -15,15 +15,15 @@ class LoginScreen extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      inputUsername: 'Input username',
-      inputPassword: 'Input password',
+      inputUsername: '',
+      inputPassword: '',
     }
   }
 
   render() {
     return (
       <View>
-        <Text>Currently Logged In As: {this.props.currentUser.username}</Text>
+        <Text>Currently Logged In As: {this.props.currentUser}</Text>
         <TextInput
           style={textInputStyles}
           onChangeText={inputUsername => this.setState({ inputUsername })}
@@ -58,13 +58,14 @@ class LoginScreen extends Component {
 
 LoginScreen.propTypes = {
   createUser: PropTypes.func.isRequired,
-  currentUser: PropTypes.object.isRequired,
+  currentUser: PropTypes.string.isRequired,
   login: PropTypes.func.isRequired,
   signupModalVisibility: PropTypes.bool.isRequired,
   toggleSignupModal: PropTypes.func.isRequired,
 }
 
 const getLists = (username, password) => {
+  console.log('click')
   return (dispatch) => {
     const fetchInit = {
       method: 'POST',
@@ -72,9 +73,10 @@ const getLists = (username, password) => {
       headers: { 'Content-Type': 'application/JSON' },
     }
 
-    return fetch('http://192.168.1.66:3000/users', fetchInit)
+    return fetch('http://10.0.0.162:3000/users', fetchInit)
       .then(data => data.json())
       .then((userObj) => {
+        console.log(userObj.lists)
         dispatch({ type: actionTypes.SET_USER, payload: userObj.userName })
         dispatch({ type: actionTypes.SET_LISTS, payload: userObj.lists })
         dispatch({ type: actionTypes.SET_USER_ID, payload: userObj._id })

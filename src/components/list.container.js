@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Modal, Text } from 'react-native'
 import { connect } from 'react-redux'
-import ListsUI from '../../ui/lists.ui'
+import ListsUI from '../ui/lists.ui'
 
 class Lists extends Component {
   constructor(props) {

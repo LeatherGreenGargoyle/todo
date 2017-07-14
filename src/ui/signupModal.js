@@ -30,7 +30,7 @@ class SignupModal extends Component {
         visible={this.props.visible}
         onRequestClose={this.props.toggleSignupModal}
       >
-      <Text>Create a new account!</Text>
+        <Text>Create a new account!</Text>
         <TextInput
           style={textInputStyles}
           onChangeText={inputUsername => this.setState({ inputUsername })}
