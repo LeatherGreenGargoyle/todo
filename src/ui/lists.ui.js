@@ -14,12 +14,14 @@ const ListsUI = ({ lists, toggleListModal, selectList }) => {
 
   return (<ScrollView style={ListUIStyles}>
     {lists.map((listObj, i) => (
-      <Text
-        key={i}
-        onPress={() => handlePress(listObj)}
-      >
-        {listObj.title}
-      </Text>
+      <View>
+        <Text
+          key={i}
+          onPress={() => handlePress(listObj)}
+        >
+          {listObj.title}
+        </Text>
+      </View>
     ))}
   </ScrollView>)
 }

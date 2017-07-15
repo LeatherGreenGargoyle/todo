@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Icon, Modal, Text, TextInput, View } from 'react-native'
+import { Button, Modal, Text, TextInput, View } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { actionTypes } from '../reducers'
