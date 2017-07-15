@@ -12,6 +12,7 @@ export const actionTypes = {
 
 const ui = (state = {
   signupModal: false,
+  listModal: false,
 }, { type }) => {
   switch (type) {
     case actionTypes.TOGGLE_SIGNUP:

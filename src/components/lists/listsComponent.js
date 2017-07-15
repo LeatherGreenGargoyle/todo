@@ -3,6 +3,7 @@ import { Button, View, TextInput } from 'react-native'
 import { connect } from 'react-redux'
 import ListsUI from '../../ui/lists.ui'
 import { actionTypes } from '../../reducers'
+import ListModal from '../../ui/listModal'
 
 const textInputStyles = {
   height: 40,
@@ -37,8 +38,9 @@ class Lists extends Component {
         <ListsUI
           lists={this.props.lists}
           selectList={this.props.selectList}
-          toggleList={this.props.toggleList}
+          toggleListModal={this.props.toggleListModal}
         />
+        <ListModal />
       </View>
     )
   }
@@ -52,7 +54,7 @@ const submitNewList = (newList, userId) => {
       headers: { 'Content-Type': 'application/JSON' },
     }
 
-    return fetch('http://10.0.0.162:3000/lists', fetchInit)
+    return fetch('http://192.168.1.66:3000/lists', fetchInit)
       .then(data => data.json())
       .then((userObj) => {
         dispatch({ type: actionTypes.SET_LISTS, payload: userObj.lists })

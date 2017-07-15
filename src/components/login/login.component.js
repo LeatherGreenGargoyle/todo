@@ -73,7 +73,7 @@ const getLists = (username, password) => {
       headers: { 'Content-Type': 'application/JSON' },
     }
 
-    return fetch('http://10.0.0.162:3000/users', fetchInit)
+    return fetch('http://192.168.1.66:3000/users', fetchInit)
       .then(data => data.json())
       .then((userObj) => {
         console.log(userObj.lists)
