@@ -6,13 +6,23 @@ const ListUIStyles = {
   flex: 1,
 }
 
-const ListsUI = ({ lists }) => (
-  <ScrollView style={ListUIStyles}>
+const ListsUI = ({ lists, toggleListModal, selectList }) => {
+  const handlePress = (listObj) => {
+    selectList(listObj)
+    toggleListModal()
+  }
+
+  return (<ScrollView style={ListUIStyles}>
     <Text>ListsUI</Text>
     {lists.map(listObj => (
-      <Text key={listObj._id}>{listObj.title}</Text>
+      <Text
+        key={listObj._id}
+        onPress={() => handlePress(listObj)}
+      >
+        {listObj.title}
+      </Text>
     ))}
-  </ScrollView>
-)
+  </ScrollView>)
+}
 
 export default ListsUI

@@ -5,18 +5,19 @@ export const actionTypes = {
   SET_USER: 'SET_USER',
   SET_USER_ID: 'SET_USER_ID',
   SET_LISTS: 'SET_LISTS',
+  SET_CURR_LIST: 'SET_CURR_LIST',
   TOGGLE_SIGNUP: 'TOGGLE_SIGNUP',
   TOGGLE_LIST: 'TOGGLE_LIST',
 }
 
 const ui = (state = {
   signupModal: false,
-}, { type, payload }) => {
+}, { type }) => {
   switch (type) {
     case actionTypes.TOGGLE_SIGNUP:
       return { ...state, signupModal: !state.signupModal }
 
-    case actionTypes.TOGGLE_List:
+    case actionTypes.TOGGLE_LIST:
       return { ...state, listModal: !state.listModal }
 
     default:
@@ -62,11 +63,12 @@ const initialList = {
   title: '',
   tasks: [],
 }
+
 const currentList = (state = initialList, { type, payload }) => {
   switch (type) {
-    case actionTypes.TOGGLE_LIST:
+    case actionTypes.SET_CURR_LIST:
       return payload
-  
+
     default:
       return state
   }
@@ -82,4 +84,4 @@ const userId = (state = '', { type, payload }) => {
   }
 }
 
-export default combineReducers({ nav, username, userId, lists, ui })
+export default combineReducers({ nav, username, userId, lists, ui, currentList })

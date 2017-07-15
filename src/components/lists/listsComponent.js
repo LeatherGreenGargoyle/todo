@@ -34,7 +34,11 @@ class Lists extends Component {
           title="Submit"
           onPress={() => this.props.submitNewList(this.state.newList, this.props.userId)}
         />
-        <ListsUI lists={this.props.lists} />
+        <ListsUI
+          lists={this.props.lists}
+          selectList={this.props.selectList}
+          toggleList={this.props.toggleList}
+        />
       </View>
     )
   }
@@ -64,6 +68,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   submitNewList: (newList, userId) => dispatch(submitNewList(newList, userId)),
+  selectList: listObj => dispatch({ type: actionTypes.SET_CURR_LIST, payload: listObj }),
+  toggleListModal: () => dispatch({ type: actionTypes.TOGGLE_LIST, payload: {} }),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Lists)
