@@ -6,7 +6,7 @@ const ListUIStyles = {
   flex: 1,
 }
 
-const ListsUI = ({ lists, toggleListModal, selectList }) => {
+const ListsUI = ({ lists, toggleListModal, selectList, handleListRemove }) => {
   const handlePress = (listObj) => {
     selectList(listObj)
     toggleListModal()
@@ -20,6 +20,11 @@ const ListsUI = ({ lists, toggleListModal, selectList }) => {
           onPress={() => handlePress(listObj)}
         >
           {listObj.title}
+        </Text>
+        <Text
+          onPress={() => handleListRemove(i)}
+        >
+          Delete List
         </Text>
       </View>
     ))}
