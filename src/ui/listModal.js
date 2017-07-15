@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Modal, Text, TextInput } from 'react-native'
+import { Button, Icon, Modal, Text, TextInput, View } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { actionTypes } from '../reducers'
@@ -16,9 +16,15 @@ class ListModal extends Component {
     this.state = {
       todoBody: '',
       tasks: [],
+      editModal: false,
+      editTask: '',
+      idxToEdit: null,
     }
     this.handlePress.bind(this)
     this.handleClose.bind(this)
+    this.toggleComplete.bind(this)
+    this.toggleEditModal.bind(this)
+    this.handleTaskEdit.bind(this)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -44,6 +50,28 @@ class ListModal extends Component {
     }
   }
 
+  handleTaskEdit(idx) {
+    const selectedTask = {}
+    selectedTask.body = this.state.editTask
+    selectedTask.completed = this.state.tasks[this.state.idxToEdit].completed
+    const newTasks = [...this.state.tasks]
+    newTasks[this.state.idxToEdit] = selectedTask
+    this.setState({ tasks: newTasks, editModal: false, editTask: '' })
+  }
+
+  toggleEditModal(idx) {
+    this.setState({ editModal: !this.state.editModal, idxToEdit: idx })
+  }
+
+  toggleComplete(idx) {
+    const selectedTask = {}
+    selectedTask.completed = !this.state.tasks[idx].completed
+    selectedTask.body = this.state.tasks[idx].body
+    const newTasks = [...this.state.tasks]
+    newTasks[idx] = selectedTask
+    this.setState({ tasks: newTasks })
+  }
+
   render() {
     return (
       <Modal
@@ -64,8 +92,33 @@ class ListModal extends Component {
         />
         <Text>Tasks: </Text>
         {this.state.tasks.map((task, i) => (
-          <Text key={i}>{task.body}</Text>
+          <View>
+            <Text
+              key={i}
+              onPress={() => this.toggleComplete(i)}
+            >
+              {task.body} Complete? {JSON.stringify(task.completed)}
+            </Text>
+            <Text
+              onPress={() => this.toggleEditModal(i)}
+            >Edit task</Text>
+          </View>
         ))}
+        <Modal
+          animationType={'slide'}
+          visible={this.state.editModal}
+          onRequestClose={() => this.setState({ editModal: !this.state.editModal })}
+        >
+          <TextInput
+            style={textInputStyles}
+            onChangeText={editTask => this.setState({ editTask })}
+            value={this.state.editTask}
+          />
+          <Button
+            title="Submit"
+            onPress={() => this.handleTaskEdit()}
+          />
+        </Modal>
       </Modal>
     )
   }
