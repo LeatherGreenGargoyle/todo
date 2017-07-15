@@ -33,7 +33,7 @@ class ListModal extends Component {
       body: this.state.todoBody,
     }
     newState.push(newTask)
-    this.setState({ tasks: newState })
+    this.setState({ todoBody: '', tasks: newState })
   }
 
   handleClose() {
@@ -50,9 +50,8 @@ class ListModal extends Component {
         style={{ flex: 1 }}
         animationType={'slide'}
         visible={this.props.visible}
-        onRequestClose={this.props.toggleListModal}
+        onRequestClose={() => this.handleClose()}
       >
-      <Text>Tasks: </Text>
         <Text>Add a new task!</Text>
         <TextInput
           style={textInputStyles}
@@ -63,6 +62,7 @@ class ListModal extends Component {
           title="Submit"
           onPress={() => this.handlePress()}
         />
+        <Text>Tasks: </Text>
         {this.state.tasks.map((task, i) => (
           <Text key={i}>{task.body}</Text>
         ))}
@@ -74,12 +74,13 @@ class ListModal extends Component {
 const editList = (listId, userId, tasks) => {
   return (dispatch) => {
     const fetchInit = {
-      method: 'POST',
+      method: 'PATCH',
       body: JSON.stringify({ listId, userId, tasks }),
       headers: { 'Content-Type': 'application/JSON' },
     }
-
+    // console.log(JSON.stringify({ listId, userId, tasks }))
     return fetch('http://192.168.1.66:3000/lists', fetchInit)
+      .then(() => fetch('http://192.168.1.66:3000/lists', fetchInit))
       .then(data => data.json())
       .then((userObj) => {
         dispatch({ type: actionTypes.SET_LISTS, payload: userObj.lists })

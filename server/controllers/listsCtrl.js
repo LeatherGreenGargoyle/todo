@@ -38,7 +38,14 @@ const listsMethods = {
       req.body.listId,
       { $set: { tasks: req.body.tasks } }
     )
+    List.findOneAndUpdate(
+      {
+        _id: req.body.listId,
+      }, {
+        $set: { tasks: req.body.tasks },
+      })
       .then((updatedList) => {
+        console.log(updatedList)
         return Promise.all([
           updatedList,
           User.findById(req.body.userId),
@@ -49,8 +56,16 @@ const listsMethods = {
         list.set(updatedList)
         return foundUser.save()
       })
+    // User.findOneAndUpdate(
+    //   { "_id": req.body.userId, "lists._id": req.body.listId },
+    //   { "$set": { "lists.$": req.body.newList } }
+    // )
       .then(savedUser => res.send(savedUser))
-      .catch(err => res.status(500).send(err))
+      // .then(updatedUser => res.send(updatedUser))
+      .catch(err => {
+        console.log(err)
+        res.status(500).send(err)
+      })
   },
 }
 
