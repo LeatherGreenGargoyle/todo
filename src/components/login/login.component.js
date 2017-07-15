@@ -76,7 +76,6 @@ const getLists = (username, password) => {
     return fetch('http://192.168.1.66:3000/users', fetchInit)
       .then(data => data.json())
       .then((userObj) => {
-        console.log(userObj.lists)
         dispatch({ type: actionTypes.SET_USER, payload: userObj.userName })
         dispatch({ type: actionTypes.SET_LISTS, payload: userObj.lists })
         dispatch({ type: actionTypes.SET_USER_ID, payload: userObj._id })

@@ -21,8 +21,8 @@ class ListModal extends Component {
     this.handleClose.bind(this)
   }
 
-  componentWillReceiveProps() {
-    const newTasks = [...this.props.list.tasks]
+  componentWillReceiveProps(nextProps) {
+    const newTasks = [...nextProps.list.tasks]
     this.setState({ tasks: newTasks })
   }
 
@@ -52,6 +52,7 @@ class ListModal extends Component {
         visible={this.props.visible}
         onRequestClose={this.props.toggleListModal}
       >
+      <Text>Tasks: </Text>
         <Text>Add a new task!</Text>
         <TextInput
           style={textInputStyles}
@@ -62,8 +63,8 @@ class ListModal extends Component {
           title="Submit"
           onPress={() => this.handlePress()}
         />
-        {this.state.tasks.forEach(task => (
-          <Text>{task.body}</Text>
+        {this.state.tasks.map((task, i) => (
+          <Text key={i}>{task.body}</Text>
         ))}
       </Modal>
     )
