@@ -25,6 +25,7 @@ class ListModal extends Component {
     this.toggleComplete.bind(this)
     this.toggleEditModal.bind(this)
     this.handleTaskEdit.bind(this)
+    this.handleTaskRemove.bind(this)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -57,6 +58,12 @@ class ListModal extends Component {
     const newTasks = [...this.state.tasks]
     newTasks[this.state.idxToEdit] = selectedTask
     this.setState({ tasks: newTasks, editModal: false, editTask: '' })
+  }
+
+  handleTaskRemove(idx) {
+    const newTasks = [...this.state.tasks]
+    newTasks.splice(idx, 1)
+    this.setState({ tasks: newTasks })
   }
 
   toggleEditModal(idx) {
@@ -102,6 +109,9 @@ class ListModal extends Component {
             <Text
               onPress={() => this.toggleEditModal(i)}
             >Edit task</Text>
+            <Text
+              onPress={() => this.handleTaskRemove(i)}
+            >Delete Task</Text>
           </View>
         ))}
         <Modal
