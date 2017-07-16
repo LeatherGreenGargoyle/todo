@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Lists from './lists'
 import { actionTypes } from '../../reducers'
+import { submitNewList, deleteList } from '../../actions'
 
 class ListsContainer extends Component {
   constructor(props) {
@@ -51,41 +52,6 @@ ListsContainer.propTypes = {
   submitNewList: PropTypes.func.isRequired,
   toggleListModal: PropTypes.func.isRequired,
   userId: PropTypes.string.isRequired,
-}
-
-const submitNewList = (newList, userId) => {
-  console.log(newList, userId)
-  return (dispatch) => {
-    const fetchInit = {
-      method: 'POST',
-      body: JSON.stringify({ user: userId, title: newList, tasks: [] }),
-      headers: { 'Content-Type': 'application/JSON' },
-    }
-
-    return fetch('http://192.168.1.66:3000/lists', fetchInit)
-      .then(data => data.json())
-      .then((userObj) => {
-        dispatch({ type: actionTypes.SET_LISTS, payload: userObj.lists })
-      })
-      .catch(err => console.log(err))
-  }
-}
-
-const deleteList = (listId, userId) => {
-  return (dispatch) => {
-    const fetchInit = {
-      method: 'DELETE',
-      body: JSON.stringify({ userId, listId }),
-      headers: { 'Content-Type': 'application/JSON' },
-    }
-
-    return fetch('http://192.168.1.66:3000/lists', fetchInit)
-      .then(data => data.json())
-      .then((userObj) => {
-        dispatch({ type: actionTypes.SET_LISTS, payload: userObj.lists })
-      })
-      .catch(err => console.log(err))
-  }
 }
 
 const mapStateToProps = state => ({
