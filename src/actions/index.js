@@ -15,7 +15,7 @@ export const submitNewList = (newList, userId) => {
       headers: { 'Content-Type': 'application/JSON' },
     }
 
-    return fetch('http://192.168.1.66:3000/lists', fetchInit)
+    return fetch('http://10.0.0.105:3000/lists', fetchInit)
       .then(data => data.json())
       .then((userObj) => {
         dispatch({ type: actionTypes.SET_LISTS, payload: userObj.lists })
@@ -32,7 +32,7 @@ export const deleteList = (listId, userId) => {
       headers: { 'Content-Type': 'application/JSON' },
     }
 
-    return fetch('http://192.168.1.66:3000/lists', fetchInit)
+    return fetch('http://10.0.0.105:3000/lists', fetchInit)
       .then(data => data.json())
       .then((userObj) => {
         dispatch({ type: actionTypes.SET_LISTS, payload: userObj.lists })

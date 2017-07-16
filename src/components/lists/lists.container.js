@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Lists from './lists'
-import { actionTypes } from '../../reducers'
 import {
   deleteList,
   selectCurrentList,
@@ -19,6 +18,7 @@ class ListsContainer extends Component {
     this.handleListRemove = this.handleListRemove.bind(this)
     this.handleNewListInput = this.handleNewListInput.bind(this)
     this.handleSubmitNewList = this.handleSubmitNewList.bind(this)
+    this.handleListClick = this.handleListClick.bind(this)
   }
 
   handleListRemove(idx) {
@@ -34,17 +34,21 @@ class ListsContainer extends Component {
     this.props.submitNewList(this.state.newList, this.props.userId)
   }
 
+  handleListClick(listObj) {
+    this.props.selectList(listObj)
+    this.props.toggleModal()
+  }
+
   render() {
-    const { lists, selectList, toggleModal } = this.props
+    const { lists } = this.props
     return (
       <Lists
         currentNewList={this.state.newList}
         handleListRemove={this.handleListRemove}
         handleNewListInput={this.handleNewListInput}
         handleSubmitNewList={this.handleSubmitNewList}
+        handleListClick={this.handleListClick}
         lists={lists}
-        selectList={selectList}
-        toggleModal={toggleModal}
       />
     )
   }

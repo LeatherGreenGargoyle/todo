@@ -142,8 +142,8 @@ const editList = (listId, userId, tasks) => {
       headers: { 'Content-Type': 'application/JSON' },
     }
     // console.log(JSON.stringify({ listId, userId, tasks }))
-    return fetch('http://192.168.1.66:3000/lists', fetchInit)
-      .then(() => fetch('http://192.168.1.66:3000/lists', fetchInit))
+    return fetch('http://10.0.0.105:3000/lists', fetchInit)
+      .then(() => fetch('http://10.0.0.105:3000/lists', fetchInit))
       .then(data => data.json())
       .then((userObj) => {
         dispatch({ type: actionTypes.SET_LISTS, payload: userObj.lists })
