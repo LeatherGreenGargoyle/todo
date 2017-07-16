@@ -12,7 +12,7 @@ const Lists = ({
   handleSubmitNewList,
   lists,
   selectList,
-  toggleListModal,
+  toggleModal,
 }) => (
   <View style={Styles.listStyles}>
     <TextInput
@@ -27,7 +27,7 @@ const Lists = ({
     <ListsUI
       lists={lists}
       selectList={selectList}
-      toggleListModal={toggleListModal}
+      toggleListModal={toggleModal}
       handleListRemove={handleListRemove}
     />
     <ListModal />
@@ -41,7 +41,7 @@ Lists.propTypes = {
   handleSubmitNewList: PropTypes.func.isRequired,
   lists: PropTypes.array.isRequired,
   selectList: PropTypes.func.isRequired,
-  toggleListModal: PropTypes.func.isRequired,
+  toggleModal: PropTypes.func.isRequired,
 }
 
 export default Lists

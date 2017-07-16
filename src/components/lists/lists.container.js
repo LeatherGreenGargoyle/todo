@@ -3,7 +3,12 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Lists from './lists'
 import { actionTypes } from '../../reducers'
-import { submitNewList, deleteList } from '../../actions'
+import {
+  deleteList,
+  selectCurrentList,
+  submitNewList,
+  toggleListModal,
+} from '../../actions'
 
 class ListsContainer extends Component {
   constructor(props) {
@@ -30,7 +35,7 @@ class ListsContainer extends Component {
   }
 
   render() {
-    const { lists, selectList, toggleListModal } = this.props
+    const { lists, selectList, toggleModal } = this.props
     return (
       <Lists
         currentNewList={this.state.newList}
@@ -39,7 +44,7 @@ class ListsContainer extends Component {
         handleSubmitNewList={this.handleSubmitNewList}
         lists={lists}
         selectList={selectList}
-        toggleListModal={toggleListModal}
+        toggleModal={toggleModal}
       />
     )
   }
@@ -50,7 +55,7 @@ ListsContainer.propTypes = {
   lists: PropTypes.array.isRequired,
   selectList: PropTypes.func.isRequired,
   submitNewList: PropTypes.func.isRequired,
-  toggleListModal: PropTypes.func.isRequired,
+  toggleModal: PropTypes.func.isRequired,
   userId: PropTypes.string.isRequired,
 }
 
@@ -61,9 +66,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   submitNewList: (newList, userId) => dispatch(submitNewList(newList, userId)),
-  selectList: listObj => dispatch({ type: actionTypes.SET_CURR_LIST, payload: listObj }),
+  selectList: listObj => dispatch(selectCurrentList(listObj)),
   deleteList: (listId, userId) => dispatch(deleteList(listId, userId)),
-  toggleListModal: () => dispatch({ type: actionTypes.TOGGLE_LIST, payload: {} }),
+  toggleModal: () => dispatch(toggleListModal()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListsContainer)

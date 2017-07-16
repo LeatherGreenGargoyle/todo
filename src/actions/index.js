@@ -40,3 +40,9 @@ export const deleteList = (listId, userId) => {
       .catch(err => console.log(err))
   }
 }
+
+export const selectCurrentList = listObj => (
+  { type: actionTypes.SET_CURR_LIST, payload: listObj }
+)
+
+export const toggleListModal = () => ({ type: actionTypes.TOGGLE_LIST, payload: {} })
