@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   addTaskHeader: {
-    fontSize: 20,
+    fontSize: 30,
     padding: 20,
   },
   textInput: {

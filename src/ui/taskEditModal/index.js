@@ -1,9 +1,5 @@
 import React from 'react'
-import {
-  Button,
-  Modal,
-  TextInput,
-} from 'react-native'
+import { Button, Modal, Text, TextInput, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 import styles from './style'
 
@@ -19,15 +15,18 @@ const TaskEditModal = ({
     visible={taskEditModalVisibility}
     onRequestClose={() => closeEditModal()}
   >
+    <Text style={styles.header}>Enter edited task:</Text>
     <TextInput
       style={styles.textInputStyles}
       onChangeText={text => editTask(text)}
       value={taskEditText}
     />
-    <Button
-      title="Submit"
+    <TouchableOpacity
+      style={styles.button}
       onPress={() => handleTaskEdit()}
-    />
+    >
+      <Text style={styles.buttonText}>Submit</Text>
+    </TouchableOpacity>
   </Modal>
 )
 

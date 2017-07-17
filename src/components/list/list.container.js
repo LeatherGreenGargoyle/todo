@@ -19,7 +19,7 @@ class ListContainer extends Component {
       idxToEdit: null,
     }
     this.editTask = this.editTask.bind(this)
-    this.closeEditModal = this.closeEditModal.bind()
+    this.closeEditModal = this.closeEditModal.bind(this)
     this.handleTaskAdd = this.handleTaskAdd.bind(this)
     this.handleClose = this.handleClose.bind(this)
     this.toggleTaskCompletion = this.toggleTaskCompletion.bind(this)
