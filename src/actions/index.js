@@ -1,3 +1,5 @@
+import { ip } from '../constants'
+
 // action type constants
 export const actionTypes = {
   SET_USER: 'SET_USER',
@@ -18,7 +20,7 @@ export const submitNewList = (newList, userId) => {
       headers: { 'Content-Type': 'application/JSON' },
     }
 
-    return fetch('http://192.168.1.66:3000/lists', fetchInit)
+    return fetch(`http://${ip}:3000/lists`, fetchInit)
       .then(data => data.json())
       .then((userObj) => {
         dispatch({ type: actionTypes.SET_LISTS, payload: userObj.lists })
@@ -36,7 +38,7 @@ export const deleteList = (listId, userId) => {
       headers: { 'Content-Type': 'application/JSON' },
     }
 
-    return fetch('http://192.168.1.66:3000/lists', fetchInit)
+    return fetch(`http://${ip}:3000/lists`, fetchInit)
       .then(data => data.json())
       .then((userObj) => {
         dispatch({ type: actionTypes.SET_LISTS, payload: userObj.lists })
@@ -53,8 +55,8 @@ export const editList = (listId, userId, tasks) => {
       body: JSON.stringify({ listId, userId, tasks }),
       headers: { 'Content-Type': 'application/JSON' },
     }
-    return fetch('http://192.168.1.66:3000/lists', fetchInit)
-      .then(() => fetch('http://192.168.1.66:3000/lists', fetchInit))
+    return fetch(`http://${ip}:3000/lists`, fetchInit)
+      .then(() => fetch(`http://${ip}:3000/lists`, fetchInit))
       .then(data => data.json())
       .then((userObj) => {
         dispatch({ type: actionTypes.SET_LISTS, payload: userObj.lists })
@@ -73,7 +75,7 @@ export const createUser = (username, password) => {
       headers: { 'Content-Type': 'application/JSON' },
     }
 
-    return fetch('http://192.168.1.66:3000/newUsers', fetchInit)
+    return fetch(`http://${ip}:3000/newUsers`, fetchInit)
       .then(data => data.json())
       .then((userObj) => {
         dispatch({ type: actionTypes.SET_USER, payload: userObj.userName })
@@ -94,7 +96,7 @@ export const getLists = (username, password) => {
       headers: { 'Content-Type': 'application/JSON' },
     }
 
-    return fetch('http://192.168.1.66:3000/users', fetchInit)
+    return fetch(`http://${ip}:3000/users`, fetchInit)
       .then(data => data.json())
       .then((userObj) => {
         dispatch({ type: actionTypes.SET_USER, payload: userObj.userName })

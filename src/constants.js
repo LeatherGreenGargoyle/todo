@@ -17,3 +17,5 @@ export const initialList = {
   title: '',
   tasks: [],
 }
+
+export const ip = ''
