@@ -35,7 +35,7 @@ class ListContainer extends Component {
   }
 
   closeEditModal() {
-    this.setState({ editModal: !this.state.editModal })
+    this.setState({ editModal: false })
   }
 
   editTask(text) {

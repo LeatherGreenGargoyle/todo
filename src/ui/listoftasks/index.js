@@ -1,10 +1,7 @@
 import React from 'react'
-import {
-  Tasks,
-  Text,
-  View,
-} from 'react-native'
+import { Text, TouchableOpacity, ScrollView, View } from 'react-native'
 import PropTypes from 'prop-types'
+import styles from './style'
 
 const ListOfTasks = ({
   handleTaskRemove,
@@ -12,25 +9,38 @@ const ListOfTasks = ({
   toggleTaskCompletion,
   toggleEditModal,
 }) => (
-  <View>
-    <Text>Tasks: </Text>
+  <ScrollView style={styles.list}>
+    <Text style={styles.header}>Click to toggle completion:  </Text>
     {tasks.map((task, i) => (
       <View>
         <Text
+          style={styles.task}
           key={i}
           onPress={() => toggleTaskCompletion(i)}
         >
-          {task.body} Complete? {JSON.stringify(task.completed)}
+          {task.body}
         </Text>
-        <Text
-          onPress={() => toggleEditModal(i)}
-        >Edit task</Text>
-        <Text
-          onPress={() => handleTaskRemove(i)}
-        >Delete Task</Text>
+        <Text style={styles.completionNotice}>
+          {/* Complete? {JSON.stringify(task.completed)} */}
+          {task.completed ? 'complete!' : 'incomplete'}
+        </Text>
+        <View style={styles.buttonRow}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => toggleEditModal(i)}
+          >
+            <Text style={styles.buttonText}>Edit</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => handleTaskRemove(i)}
+          >
+            <Text style={styles.buttonText}>Delete</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     ))}
-  </View>
+  </ScrollView>
 )
 
 ListOfTasks.propTypes = {
