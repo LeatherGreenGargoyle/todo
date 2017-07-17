@@ -1,18 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Button, Text, TextInput, View } from 'react-native'
-import SignupModal from '../../ui/signupModal'
+import SignupModal from '../signup'
 import styles from './style'
 
 const Login = ({
-  createUser,
   currentUser,
   handleUsernameInput,
   handlePasswordInput,
   inputtedPassword,
   inputtedUsername,
   login,
-  signupModalVisibility,
   toggleSignupModal,
 }) => (
   <View>
@@ -36,23 +34,17 @@ const Login = ({
       title="Create a new account"
       onPress={() => toggleSignupModal()}
     />
-    <SignupModal
-      visible={signupModalVisibility}
-      toggleSignupModal={toggleSignupModal}
-      createUser={createUser}
-    />
+    <SignupModal />
   </View>
 )
 
 Login.propTypes = {
-  createUser: PropTypes.func.isRequired,
   currentUser: PropTypes.string.isRequired,
   handleUsernameInput: PropTypes.func.isRequired,
   handlePasswordInput: PropTypes.func.isRequired,
   inputtedPassword: PropTypes.string.isRequired,
   inputtedUsername: PropTypes.string.isRequired,
   login: PropTypes.func.isRequired,
-  signupModalVisibility: PropTypes.bool.isRequired,
   toggleSignupModal: PropTypes.func.isRequired,
 }
 

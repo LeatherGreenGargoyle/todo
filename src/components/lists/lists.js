@@ -1,9 +1,7 @@
 import React from 'react'
 import { Button, View, TextInput } from 'react-native'
 import PropTypes from 'prop-types'
-// import ListsUI from '../../ui/lists.ui'
 import ListOfLists from '../../ui/listoflists'
-// import ListModal from '../../ui/listModal'
 import List from '../list'
 import Styles from './style'
 
