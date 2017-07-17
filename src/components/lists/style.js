@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   },
   list: {
     flex: 1,
-  }
+  },
 })
 
 export default styles

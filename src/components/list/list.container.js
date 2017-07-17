@@ -110,24 +110,6 @@ class ListContainer extends Component {
   }
 }
 
-// const editList = (listId, userId, tasks) => {
-//   return (dispatch) => {
-//     const fetchInit = {
-//       method: 'PATCH',
-//       body: JSON.stringify({ listId, userId, tasks }),
-//       headers: { 'Content-Type': 'application/JSON' },
-//     }
-//     return fetch('http://192.168.1.66:3000/lists', fetchInit)
-//       .then(() => fetch('http://192.168.1.66:3000/lists', fetchInit))
-//       .then(data => data.json())
-//       .then((userObj) => {
-//         dispatch({ type: actionTypes.SET_LISTS, payload: userObj.lists })
-//         dispatch({ type: actionTypes.TOGGLE_LIST, payload: {} })
-//       })
-//       .catch(err => console.log(err))
-//   }
-// }
-
 ListContainer.propTypes = {
   editList: PropTypes.func.isRequired,
   userId: PropTypes.string.isRequired,
