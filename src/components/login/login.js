@@ -14,7 +14,7 @@ const Login = ({
   toggleSignupModal,
 }) => (
   <View>
-    <Text>Currently Logged In As: {currentUser}</Text>
+    <Text style={styles.currUserDisplay}>Currently Logged In As: {currentUser}</Text>
     <TextInput
       style={styles.textInput}
       onChangeText={text => handleUsernameInput(text)}
