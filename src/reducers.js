@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
-import nav from './navigation/nav.duck'
+import { NavigationActions } from 'react-navigation'
+import Navigator from './navigation/nav'
 
 export const actionTypes = {
   SET_USER: 'SET_USER',
@@ -48,7 +49,6 @@ const initialLists = [
     ],
   },
 ]
-
 const lists = (state = initialLists, { type, payload }) => {
   switch (type) {
     case actionTypes.SET_LISTS:
@@ -64,7 +64,6 @@ const initialList = {
   title: '',
   tasks: [],
 }
-
 const currentList = (state = initialList, { type, payload }) => {
   switch (type) {
     case actionTypes.SET_CURR_LIST:
@@ -83,6 +82,11 @@ const userId = (state = '', { type, payload }) => {
     default:
       return state
   }
+}
+
+const initNavState = Navigator.router.getStateForAction(NavigationActions.navigate({ routeName: 'Login' }))
+const nav = (state = initNavState, action) => {
+  return Navigator.router.getStateForAction(action, state)
 }
 
 export default combineReducers({ nav, username, userId, lists, ui, currentList })

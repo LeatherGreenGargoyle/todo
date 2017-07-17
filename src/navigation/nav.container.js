@@ -4,11 +4,11 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Navigator from './nav'
 
-const NavigatorComponent = ({ dispatch, nav }) => (
+const NavContainer = ({ dispatch, nav }) => (
   <Navigator navigation={addNavigationHelpers({ dispatch, state: nav })} />
 )
 
-NavigatorComponent.propTypes = {
+NavContainer.propTypes = {
   dispatch: PropTypes.func.isRequired,
   nav: PropTypes.object.isRequired,
 }
@@ -17,4 +17,4 @@ const mapStateToProps = state => ({
   nav: state.nav,
 })
 
-export default connect(mapStateToProps)(NavigatorComponent)
+export default connect(mapStateToProps)(NavContainer)

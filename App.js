@@ -1,10 +1,10 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import store from './src/store'
-import NavigatorComponent from './src/navigation/nav.component'
+import Navigator from './src/navigation'
 
 export default () => (
   <Provider store={store}>
-    <NavigatorComponent />
+    <Navigator />
   </Provider>
 )
