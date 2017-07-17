@@ -15,11 +15,13 @@ const Login = ({
 }) => (
   <View>
     <Text style={styles.currUserDisplay}>Currently Logged In As: {currentUser}</Text>
+    <Text>Username: </Text>
     <TextInput
       style={styles.textInput}
       onChangeText={text => handleUsernameInput(text)}
       value={inputtedUsername}
     />
+    <Text>Password: </Text>
     <TextInput
       style={styles.textInput}
       onChangeText={text => handlePasswordInput(text)}

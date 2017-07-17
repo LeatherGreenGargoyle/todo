@@ -9,6 +9,7 @@ export const actionTypes = {
   SET_CURR_LIST: 'SET_CURR_LIST',
   TOGGLE_SIGNUP: 'TOGGLE_SIGNUP',
   TOGGLE_LIST: 'TOGGLE_LIST',
+  TO_LISTS: 'TO_LISTS',
 }
 
 const ui = (state = {
@@ -86,7 +87,15 @@ const userId = (state = '', { type, payload }) => {
 
 const initNavState = Navigator.router.getStateForAction(NavigationActions.navigate({ routeName: 'Login' }))
 const nav = (state = initNavState, action) => {
-  return Navigator.router.getStateForAction(action, state)
+  switch (action.type) {
+    case actionTypes.TO_LISTS:
+      return Navigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'Lists' }),
+        state)
+
+    default:
+      return Navigator.router.getStateForAction(action, state)
+  }
 }
 
 export default combineReducers({ nav, username, userId, lists, ui, currentList })

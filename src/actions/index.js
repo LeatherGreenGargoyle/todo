@@ -5,6 +5,7 @@ export const actionTypes = {
   SET_CURR_LIST: 'SET_CURR_LIST',
   TOGGLE_SIGNUP: 'TOGGLE_SIGNUP',
   TOGGLE_LIST: 'TOGGLE_LIST',
+  TO_LISTS: 'TO_LISTS',
 }
 // action type constants
 
@@ -94,6 +95,7 @@ export const getLists = (username, password) => {
         dispatch({ type: actionTypes.SET_USER, payload: userObj.userName })
         dispatch({ type: actionTypes.SET_LISTS, payload: userObj.lists })
         dispatch({ type: actionTypes.SET_USER_ID, payload: userObj._id })
+        dispatch({ type: actionTypes.TO_LISTS, payload: {} })
       })
       .catch(err => console.log(err))
   }
