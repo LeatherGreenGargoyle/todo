@@ -5,6 +5,7 @@ import styles from './style'
 import ListOfTasks from '../../ui/listoftasks'
 import TaskEditModal from '../../ui/taskEditModal'
 
+// List component renders the UI component ListOfTasks
 const List = ({
   closeEditModal,
   editTask,
@@ -14,6 +15,7 @@ const List = ({
   handleTaskRemove,
   handleTaskEdit,
   listModalVisibility,
+  listTitle,
   tasks,
   taskEditModalVisibility,
   taskEditText,
@@ -27,28 +29,29 @@ const List = ({
     visible={listModalVisibility}
     onRequestClose={() => handleClose()}
   >
+    <Text style={styles.title}>{listTitle}</Text>
     <Text style={styles.addTaskHeader}>Type to add task: </Text>
+
     <TextInput
       style={styles.textInput}
       onChangeText={text => handleNewTaskInput(text)}
       value={todoBody}
     />
-    {/* <Button
-      title="Submit"
-      onPress={() => handleTaskAdd()}
-    /> */}
+    
     <TouchableOpacity
       style={styles.button}
       onPress={() => handleTaskAdd()}
     >
       <Text style={styles.buttonText}>Submit</Text>
     </TouchableOpacity>
+
     <ListOfTasks
       handleTaskRemove={handleTaskRemove}
       tasks={tasks}
       toggleTaskCompletion={toggleTaskCompletion}
       toggleEditModal={toggleEditModal}
     />
+
     <TaskEditModal
       closeEditModal={closeEditModal}
       editTask={editTask}
@@ -69,6 +72,7 @@ List.propTypes = {
   handleTaskRemove: PropTypes.func.isRequired,
   handleTaskEdit: PropTypes.func.isRequired,
   listModalVisibility: PropTypes.bool.isRequired,
+  listTitle: PropTypes.string.isRequired,
   tasks: PropTypes.array.isRequired,
   taskEditText: PropTypes.string.isRequired,
   todoBody: PropTypes.string.isRequired,

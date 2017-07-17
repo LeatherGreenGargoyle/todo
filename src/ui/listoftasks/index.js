@@ -3,6 +3,7 @@ import { Text, TouchableOpacity, ScrollView, View } from 'react-native'
 import PropTypes from 'prop-types'
 import styles from './style'
 
+// presentational component used to render tasks within a list
 const ListOfTasks = ({
   handleTaskRemove,
   tasks,
@@ -10,7 +11,8 @@ const ListOfTasks = ({
   toggleEditModal,
 }) => (
   <ScrollView style={styles.list}>
-    <Text style={styles.header}>Click to toggle completion:  </Text>
+    <Text style={styles.header}>Click to toggle completion: </Text>
+
     {tasks.map((task, i) => (
       <View>
         <Text
@@ -20,10 +22,11 @@ const ListOfTasks = ({
         >
           {task.body}
         </Text>
+
         <Text style={styles.completionNotice}>
-          {/* Complete? {JSON.stringify(task.completed)} */}
           {task.completed ? 'complete!' : 'incomplete'}
         </Text>
+
         <View style={styles.buttonRow}>
           <TouchableOpacity
             style={styles.button}
@@ -31,6 +34,7 @@ const ListOfTasks = ({
           >
             <Text style={styles.buttonText}>Edit</Text>
           </TouchableOpacity>
+
           <TouchableOpacity
             style={styles.button}
             onPress={() => handleTaskRemove(i)}
@@ -38,6 +42,7 @@ const ListOfTasks = ({
             <Text style={styles.buttonText}>Delete</Text>
           </TouchableOpacity>
         </View>
+
       </View>
     ))}
   </ScrollView>

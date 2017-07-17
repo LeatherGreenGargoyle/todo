@@ -15,24 +15,28 @@ const Login = ({
 }) => (
   <View style={styles.screen}>
     <Text style={styles.currUserDisplay}>Currently Logged In As: {currentUser}</Text>
+
     <Text>Username: </Text>
     <TextInput
       style={styles.textInput}
       onChangeText={text => handleUsernameInput(text)}
       value={inputtedUsername}
     />
+
     <Text>Password: </Text>
     <TextInput
       style={styles.textInput}
       onChangeText={text => handlePasswordInput(text)}
       value={inputtedPassword}
     />
+
     <TouchableOpacity
       style={styles.button}
       onPress={() => login(inputtedUsername, inputtedPassword)}
     >
       <Text style={styles.buttonText}>Submit</Text>
     </TouchableOpacity>
+
     <Text style={styles.createAccountHeader}>Need to make an account?</Text>
     <TouchableOpacity
       style={styles.button}

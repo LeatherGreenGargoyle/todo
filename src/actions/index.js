@@ -1,3 +1,4 @@
+// action type constants
 export const actionTypes = {
   SET_USER: 'SET_USER',
   SET_USER_ID: 'SET_USER_ID',
@@ -7,8 +8,8 @@ export const actionTypes = {
   TOGGLE_LIST: 'TOGGLE_LIST',
   TO_LISTS: 'TO_LISTS',
 }
-// action type constants
 
+// add a new list to the database, then update store with new list
 export const submitNewList = (newList, userId) => {
   return (dispatch) => {
     const fetchInit = {
@@ -26,6 +27,7 @@ export const submitNewList = (newList, userId) => {
   }
 }
 
+// delete list from database, then update store with new lists
 export const deleteList = (listId, userId) => {
   return (dispatch) => {
     const fetchInit = {
@@ -43,6 +45,7 @@ export const deleteList = (listId, userId) => {
   }
 }
 
+// update list in database, then update store with new list
 export const editList = (listId, userId, tasks) => {
   return (dispatch) => {
     const fetchInit = {
@@ -61,6 +64,7 @@ export const editList = (listId, userId, tasks) => {
   }
 }
 
+// create a new user in database, then set current user and lists, and close signup modal
 export const createUser = (username, password) => {
   return (dispatch) => {
     const fetchInit = {
@@ -81,6 +85,7 @@ export const createUser = (username, password) => {
   }
 }
 
+// authenticate user, then retrieve lists and update store
 export const getLists = (username, password) => {
   return (dispatch) => {
     const fetchInit = {
@@ -101,6 +106,7 @@ export const getLists = (username, password) => {
   }
 }
 
+// select a list to be displayed in the 'list' modal
 export const selectCurrentList = listObj => (
   { type: actionTypes.SET_CURR_LIST, payload: listObj }
 )

@@ -5,6 +5,7 @@ import ListOfLists from '../../ui/listoflists'
 import List from '../list'
 import Styles from './style'
 
+// List component renders the UI component ListOfLists
 const Lists = ({
   currentNewList,
   handleListRemove,
@@ -14,7 +15,7 @@ const Lists = ({
   lists,
 }) => (
   <View style={Styles.list}>
-    <Text style={Styles.headers}>To make a new list, enter a name: </Text>
+    <Text style={Styles.headers}>To make a new list, enter a listname: </Text>
     <TextInput
       style={Styles.textInput}
       onChangeText={newList => handleNewListInput(newList)}

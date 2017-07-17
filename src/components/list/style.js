@@ -24,6 +24,10 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     width: 300,
   },
+  title: {
+    fontSize: 40,
+    padding: 20,
+  },
 })
 
 export default styles

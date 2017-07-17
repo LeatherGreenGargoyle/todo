@@ -1,16 +1,8 @@
 import { combineReducers } from 'redux'
 import { NavigationActions } from 'react-navigation'
 import Navigator from './navigation/nav'
-
-export const actionTypes = {
-  SET_USER: 'SET_USER',
-  SET_USER_ID: 'SET_USER_ID',
-  SET_LISTS: 'SET_LISTS',
-  SET_CURR_LIST: 'SET_CURR_LIST',
-  TOGGLE_SIGNUP: 'TOGGLE_SIGNUP',
-  TOGGLE_LIST: 'TOGGLE_LIST',
-  TO_LISTS: 'TO_LISTS',
-}
+import { actionTypes } from './actions'
+import { initialList, initialLists } from './constants'
 
 const ui = (state = {
   signupModal: false,
@@ -38,18 +30,6 @@ const username = (state = '', { type, payload }) => {
   }
 }
 
-const initialLists = [
-  {
-    title: 'Login to view lists!',
-    tasks: [
-      {
-        body: 'Login to view lists!',
-        completed: false,
-        _id: 0,
-      },
-    ],
-  },
-]
 const lists = (state = initialLists, { type, payload }) => {
   switch (type) {
     case actionTypes.SET_LISTS:
@@ -60,11 +40,6 @@ const lists = (state = initialLists, { type, payload }) => {
   }
 }
 
-
-const initialList = {
-  title: '',
-  tasks: [],
-}
 const currentList = (state = initialList, { type, payload }) => {
   switch (type) {
     case actionTypes.SET_CURR_LIST:

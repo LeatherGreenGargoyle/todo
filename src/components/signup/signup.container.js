@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Signup from './signup'
 import { createUser, toggleSignupModal } from '../../actions'
 
+// SignupContainer renders a Signup component
 class SignupContainer extends Component {
   constructor(props) {
     super(props)

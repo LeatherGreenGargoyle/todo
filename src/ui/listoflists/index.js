@@ -3,6 +3,7 @@ import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import PropTypes from 'prop-types'
 import styles from './style'
 
+// presentational component used to display list of all todo lists
 const ListOfLists = ({ lists, handleListClick, handleListRemove }) => (
   <ScrollView style={styles.listOfLists}>
     {lists.map((listObj, i) => (

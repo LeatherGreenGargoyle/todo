@@ -24,8 +24,8 @@ const styles = StyleSheet.create({
     height: 40,
     borderColor: 'gray',
     borderWidth: 1,
-    marginLeft: 10,
-    width: 300,
+    marginLeft: 20,
+    width: 200,
   },
 })
 

@@ -9,6 +9,7 @@ import {
   toggleListModal,
 } from '../../actions'
 
+// ListsContainer renders the list of all todo lists
 class ListsContainer extends Component {
   constructor(props) {
     super(props)
@@ -21,6 +22,7 @@ class ListsContainer extends Component {
     this.handleListClick = this.handleListClick.bind(this)
   }
 
+  // delete selected list from database, then update store and re-render component
   handleListRemove(idx) {
     const selectedListId = this.props.lists[idx]._id
     this.props.deleteList(selectedListId, this.props.userId)
@@ -30,10 +32,12 @@ class ListsContainer extends Component {
     this.setState({ newList: text })
   }
 
+  // write new list to database, then update store and re-render component
   handleSubmitNewList() {
     this.props.submitNewList(this.state.newList, this.props.userId)
   }
 
+  // when user clicks list, toggle the List modal and set currentList to the selected list
   handleListClick(listObj) {
     this.props.selectList(listObj)
     this.props.toggleModal()

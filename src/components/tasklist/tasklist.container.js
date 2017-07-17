@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { actionTypes } from '../../actions'
 import TaskList from './tasklist'
 
+// TaskListContainer renders a TaskList component
 class TaskListContainer extends Component {
   constructor(props) {
     super(props)
@@ -13,6 +14,7 @@ class TaskListContainer extends Component {
     this.handleListSelect = this.handleListSelect.bind(this)
   }
 
+  // save the task and the list containing it as a tuple, to easily render task alongside link to its list
   componentWillReceiveProps(nextProps) {
     const tuples = []
     nextProps.lists.forEach(list => {
@@ -23,6 +25,7 @@ class TaskListContainer extends Component {
     this.setState({ taskAndListTuples: tuples })
   }
 
+  // when user clicks a list, toggle the List modal and set the current list to the selected list
   handleListSelect(listObj) {
     this.props.selectList(listObj)
     this.props.toggleListModal()

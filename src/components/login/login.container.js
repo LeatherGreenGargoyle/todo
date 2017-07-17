@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Login from './login'
 import { getLists, toggleSignupModal } from '../../actions'
 
+// LoginContainer renders Login component
 class LoginContainer extends Component {
   constructor(props) {
     super(props)

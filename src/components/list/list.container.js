@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import {
-  actionTypes,
-  editList,
-  toggleListModal,
-} from '../../actions'
+import { editList, toggleListModal } from '../../actions'
 import List from './list'
 
+// ListContainer renders a single List component
 class ListContainer extends Component {
   constructor(props) {
     super(props)
@@ -19,14 +16,16 @@ class ListContainer extends Component {
       idxToEdit: null,
     }
     this.editTask = this.editTask.bind(this)
-    this.closeEditModal = this.closeEditModal.bind(this)
-    this.handleTaskAdd = this.handleTaskAdd.bind(this)
-    this.handleClose = this.handleClose.bind(this)
-    this.toggleTaskCompletion = this.toggleTaskCompletion.bind(this)
-    this.toggleEditModal = this.toggleEditModal.bind(this)
     this.handleTaskEdit = this.handleTaskEdit.bind(this)
+    this.toggleTaskCompletion = this.toggleTaskCompletion.bind(this)
     this.handleTaskRemove = this.handleTaskRemove.bind(this)
+    this.handleTaskAdd = this.handleTaskAdd.bind(this)
     this.handleNewTaskInput = this.handleNewTaskInput.bind(this)
+
+    this.closeEditModal = this.closeEditModal.bind(this)
+    this.toggleEditModal = this.toggleEditModal.bind(this)
+
+    this.handleListScreenClose = this.handleListScreenClose.bind(this)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -42,6 +41,7 @@ class ListContainer extends Component {
     this.setState({ editTask: text })
   }
 
+  // add the task entered into TextInput to local state
   handleTaskAdd() {
     const newState = [...this.state.tasks]
     const newTask = {
@@ -52,7 +52,8 @@ class ListContainer extends Component {
     this.setState({ todoBody: '', tasks: newState })
   }
 
-  handleClose() {
+  // on List close, compare set of tasks to original tasks; if different, update the list in database
+  handleListScreenClose() {
     if (JSON.stringify(this.state.tasks) !== JSON.stringify(this.props.list.tasks)) {
       this.props.editList(this.props.list._id, this.props.userId, this.state.tasks)
     } else {
@@ -60,6 +61,7 @@ class ListContainer extends Component {
     }
   }
 
+  // on submission of task edit, update the task in local state
   handleTaskEdit() {
     const selectedTask = {}
     selectedTask.body = this.state.editTask
@@ -69,12 +71,14 @@ class ListContainer extends Component {
     this.setState({ tasks: newTasks, editModal: false, editTask: '' })
   }
 
+  // remove task from local state
   handleTaskRemove(idx) {
     const newTasks = [...this.state.tasks]
     newTasks.splice(idx, 1)
     this.setState({ tasks: newTasks })
   }
 
+  // add currently-inputting task to local state
   handleNewTaskInput(newTask) {
     this.setState({ todoBody: newTask })
   }
@@ -83,6 +87,7 @@ class ListContainer extends Component {
     this.setState({ editModal: !this.state.editModal, idxToEdit: idx })
   }
 
+  // update task's completion in local state
   toggleTaskCompletion(idx) {
     const selectedTask = {}
     selectedTask.completed = !this.state.tasks[idx].completed
@@ -98,12 +103,13 @@ class ListContainer extends Component {
         closeEditModal={this.closeEditModal}
         editTask={this.editTask}
         taskEditModalVisibility={this.state.editModal}
-        handleClose={this.handleClose}
+        handleClose={this.handleListScreenClose}
         handleNewTaskInput={this.handleNewTaskInput}
         handleTaskAdd={this.handleTaskAdd}
         handleTaskRemove={this.handleTaskRemove}
         handleTaskEdit={this.handleTaskEdit}
         listModalVisibility={this.props.listModalVisibility}
+        listTitle={this.props.list.title}
         tasks={this.state.tasks}
         taskEditText={this.state.editTask}
         todoBody={this.state.todoBody}

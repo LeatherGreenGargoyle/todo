@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Modal, Text, TextInput, TouchableOpacity } from 'react-native'
+import { Modal, Text, TextInput, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 import styles from './style'
 
