@@ -1,5 +1,5 @@
 import { TabNavigator } from 'react-navigation'
-import LoginScreen from '../components/login/login.component'
+import LoginScreen from '../components/login/'
 import ListsScreen from '../components/lists'
 import TasksScreen from '../components/tasklist'
 

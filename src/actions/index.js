@@ -6,6 +6,7 @@ export const actionTypes = {
   TOGGLE_SIGNUP: 'TOGGLE_SIGNUP',
   TOGGLE_LIST: 'TOGGLE_LIST',
 }
+// action type constants
 
 export const submitNewList = (newList, userId) => {
   return (dispatch) => {

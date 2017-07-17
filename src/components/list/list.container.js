@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { actionTypes, editList } from '../../actions'
+import {
+  actionTypes,
+  editList,
+  toggleListModal,
+} from '../../actions'
 import List from './list'
 
 class ListContainer extends Component {
@@ -125,7 +129,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  toggleListModal: () => dispatch({ type: actionTypes.TOGGLE_LIST, payload: {} }),
+  toggleListModal: () => dispatch(toggleListModal()),
   editList: (listId, userId, tasks) => dispatch(editList(listId, userId, tasks)),
 })
 

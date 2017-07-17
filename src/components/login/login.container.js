@@ -1,62 +1,45 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Button, Text, TextInput, View } from 'react-native'
 import { connect } from 'react-redux'
 import { actionTypes } from '../../reducers'
-import SignupModal from '../../ui/signupModal'
+import Login from './login'
 
-const textInputStyles = {
-  height: 40,
-  borderColor: 'gray',
-  borderWidth: 1,
-}
-
-class LoginScreen extends Component {
+class LoginContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      inputUsername: '',
-      inputPassword: '',
+      inputtedUsername: '',
+      inputtedPassword: '',
     }
+    this.handleUsernameInput = this.handleUsernameInput.bind(this)
+    this.handlePasswordInput = this.handlePasswordInput.bind(this)
+  }
+
+  handleUsernameInput(text) {
+    this.setState({ inputtedUsername: text })
+  }
+  handlePasswordInput(text) {
+    this.setState({ inputtedPassword: text })
   }
 
   render() {
     return (
-      <View>
-        <Text>Currently Logged In As: {this.props.currentUser}</Text>
-        <TextInput
-          style={textInputStyles}
-          onChangeText={inputUsername => this.setState({ inputUsername })}
-          value={this.state.inputUsername}
-        />
-        <TextInput
-          style={textInputStyles}
-          onChangeText={inputPassword => this.setState({ inputPassword })}
-          value={this.state.inputPassword}
-        />
-        <Button
-          title="Submit"
-          onPress={() => this.props.login(this.state.inputUsername, this.state.inputPassword)}
-        />
-        <Text>Create a new account</Text>
-        <Button
-          title="Create a new account"
-          onPress={() => {
-            console.log('clicked 1')
-            this.props.toggleSignupModal()
-          }}
-        />
-        <SignupModal
-          visible={this.props.signupModalVisibility}
-          toggleSignupModal={this.props.toggleSignupModal}
-          createUser={this.props.createUser}
-        />
-      </View>
+      <Login
+        createUser={this.props.createUser}
+        currentUser={this.props.currentUser}
+        handleUsernameInput={this.handleUsernameInput}
+        handlePasswordInput={this.handlePasswordInput}
+        inputtedUsername={this.state.inputtedUsername}
+        inputtedPassword={this.state.inputtedPassword}
+        login={this.props.login}
+        signupModalVisibility={this.props.signupModalVisibility}
+        toggleSignupModal={this.props.toggleSignupModal}
+      />
     )
   }
 }
 
-LoginScreen.propTypes = {
+LoginContainer.propTypes = {
   createUser: PropTypes.func.isRequired,
   currentUser: PropTypes.string.isRequired,
   login: PropTypes.func.isRequired,
@@ -65,7 +48,6 @@ LoginScreen.propTypes = {
 }
 
 const getLists = (username, password) => {
-  console.log('click')
   return (dispatch) => {
     const fetchInit = {
       method: 'POST',
@@ -112,10 +94,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   login: (username, password) => dispatch(getLists(username, password)),
   toggleSignupModal: () => {
-    console.log('clicked')
     dispatch({ type: actionTypes.TOGGLE_SIGNUP, payload: {} })
   },
   createUser: (username, password) => dispatch(createUser(username, password)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer)
