@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, View, TextInput } from 'react-native'
+import { Button, Text, View, TextInput, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 import ListOfLists from '../../ui/listoflists'
 import List from '../list'
@@ -14,15 +14,19 @@ const Lists = ({
   lists,
 }) => (
   <View style={Styles.list}>
+    <Text style={Styles.headers}>To make a new list, enter a name: </Text>
     <TextInput
       style={Styles.textInput}
       onChangeText={newList => handleNewListInput(newList)}
       value={currentNewList}
     />
-    <Button
-      title="Submit"
+    <TouchableOpacity
+      style={Styles.button}
       onPress={() => handleSubmitNewList()}
-    />
+    >
+      <Text style={Styles.buttonText}>Submit</Text>
+    </TouchableOpacity>    
+    <Text style={Styles.headers}>Click a list to view: </Text>
     <ListOfLists
       lists={lists}
       handleListClick={handleListClick}

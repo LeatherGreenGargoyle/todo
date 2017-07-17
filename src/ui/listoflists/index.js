@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, Text, View } from 'react-native'
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import PropTypes from 'prop-types'
 import styles from './style'
 
@@ -8,16 +8,18 @@ const ListOfLists = ({ lists, handleListClick, handleListRemove }) => (
     {lists.map((listObj, i) => (
       <View>
         <Text
+          style={styles.listTitle}
           key={i}
           onPress={() => handleListClick(listObj)}
         >
           {listObj.title}
         </Text>
-        <Text
+        <TouchableOpacity
+          style={styles.button}
           onPress={() => handleListRemove(i)}
         >
-          Delete List
-        </Text>
+          <Text style={styles.buttonText}>Delete</Text>
+        </TouchableOpacity>
       </View>
     ))}
   </ScrollView>
