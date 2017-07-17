@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button, Text, TextInput, View } from 'react-native'
+import { Button, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import SignupModal from '../signup'
 import styles from './style'
 
@@ -13,7 +13,7 @@ const Login = ({
   login,
   toggleSignupModal,
 }) => (
-  <View>
+  <View style={styles.screen}>
     <Text style={styles.currUserDisplay}>Currently Logged In As: {currentUser}</Text>
     <Text>Username: </Text>
     <TextInput
@@ -27,15 +27,19 @@ const Login = ({
       onChangeText={text => handlePasswordInput(text)}
       value={inputtedPassword}
     />
-    <Button
-      title="Submit"
+    <TouchableOpacity
+      style={styles.button}
       onPress={() => login(inputtedUsername, inputtedPassword)}
-    />
-    <Text>Create a new account</Text>
-    <Button
-      title="Create a new account"
+    >
+      <Text style={styles.buttonText}>Submit</Text>
+    </TouchableOpacity>
+    <Text style={styles.createAccountHeader}>Need to make an account?</Text>
+    <TouchableOpacity
+      style={styles.button}
       onPress={() => toggleSignupModal()}
-    />
+    >
+      <Text style={styles.buttonText}>Create</Text>
+    </TouchableOpacity>
     <SignupModal />
   </View>
 )
