@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { actionTypes } from '../../reducers'
 import Login from './login'
+import { getLists } from '../../actions'
 
 class LoginContainer extends Component {
   constructor(props) {
@@ -45,25 +46,6 @@ LoginContainer.propTypes = {
   login: PropTypes.func.isRequired,
   signupModalVisibility: PropTypes.bool.isRequired,
   toggleSignupModal: PropTypes.func.isRequired,
-}
-
-const getLists = (username, password) => {
-  return (dispatch) => {
-    const fetchInit = {
-      method: 'POST',
-      body: JSON.stringify({ username, password }),
-      headers: { 'Content-Type': 'application/JSON' },
-    }
-
-    return fetch('http://192.168.1.66:3000/users', fetchInit)
-      .then(data => data.json())
-      .then((userObj) => {
-        dispatch({ type: actionTypes.SET_USER, payload: userObj.userName })
-        dispatch({ type: actionTypes.SET_LISTS, payload: userObj.lists })
-        dispatch({ type: actionTypes.SET_USER_ID, payload: userObj._id })
-      })
-      .catch(err => console.log(err))
-  }
 }
 
 const createUser = (username, password) => {
