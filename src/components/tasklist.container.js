@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Modal, Text, View } from 'react-native'
 import { connect } from 'react-redux'
-import ListModal from '../ui/listModal'
+// import ListModal from '../ui/listModal'
+import List from '../components/list'
 import { actionTypes } from '../reducers'
 
 class TaskList extends Component {
@@ -41,7 +42,7 @@ class TaskList extends Component {
             </Text>
           )
         })}
-        <ListModal />
+        <List />
       </View>
     )
   }

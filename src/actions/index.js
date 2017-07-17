@@ -1,4 +1,4 @@
-const actionTypes = {
+export const actionTypes = {
   SET_USER: 'SET_USER',
   SET_USER_ID: 'SET_USER_ID',
   SET_LISTS: 'SET_LISTS',

@@ -3,7 +3,8 @@ import { Button, View, TextInput } from 'react-native'
 import PropTypes from 'prop-types'
 // import ListsUI from '../../ui/lists.ui'
 import ListOfLists from '../../ui/listoflists'
-import ListModal from '../../ui/listModal'
+// import ListModal from '../../ui/listModal'
+import List from '../list'
 import Styles from './style'
 
 const Lists = ({
@@ -29,7 +30,7 @@ const Lists = ({
       handleListClick={handleListClick}
       handleListRemove={handleListRemove}
     />
-    <ListModal />
+    <List />
   </View>
 )
 
