@@ -8,8 +8,8 @@ class SignupContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      inputtedUsername: 'Input username',
-      inputtedPassword: 'Input password',
+      inputtedUsername: '',
+      inputtedPassword: '',
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handlePasswordInput = this.handlePasswordInput.bind(this)

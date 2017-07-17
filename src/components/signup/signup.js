@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Modal, Text, TextInput } from 'react-native'
+import { Button, Modal, Text, TextInput, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 import styles from './style'
 
@@ -13,26 +13,30 @@ const Signup = ({
   toggleSignupModal,
 }) => (
   <Modal
-    style={{ flex: 1 }}
+    style={{ flex: 1, padding: 5 }}
     animationType={'slide'}
     visible={signupModalVisibility}
     onRequestClose={toggleSignupModal}
   >
-    <Text>Create a new account!</Text>
+    <Text style={styles.createAccountHeader}>Create a new account!</Text>
+    <Text>Username:</Text>
     <TextInput
       style={styles.textInput}
       onChangeText={text => handleUsernameInput(text)}
       value={inputtedUsername}
     />
+    <Text>Password:</Text>
     <TextInput
       style={styles.textInput}
       onChangeText={text => handlePasswordInput(text)}
       value={inputtedPassword}
     />
-    <Button
-      title="Submit"
+    <TouchableOpacity
+      style={styles.button}
       onPress={() => createUser(inputtedUsername, inputtedPassword)}
-    />
+    >
+      <Text style={styles.buttonText}>Submit</Text>
+    </TouchableOpacity>
   </Modal>
 )
 
