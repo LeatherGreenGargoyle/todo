@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import { Button, Modal, Text, TextInput } from 'react-native'
+import React from 'react'
+import { Modal, Text, TextInput, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
-import style from './style'
+import styles from './style'
 import ListOfTasks from '../../ui/listoftasks'
 import TaskEditModal from '../../ui/taskEditModal'
 
@@ -22,21 +22,27 @@ const List = ({
   toggleEditModal,
 }) => (
   <Modal
-    style={{ flex: 1 }}
+    style={{ flex: 1, padding: 5 }}
     animationType={'slide'}
     visible={listModalVisibility}
     onRequestClose={() => handleClose()}
   >
-    <Text>Add a new task!</Text>
+    <Text style={styles.addTaskHeader}>Type to add task: </Text>
     <TextInput
-      style={style.textInput}
+      style={styles.textInput}
       onChangeText={text => handleNewTaskInput(text)}
       value={todoBody}
     />
-    <Button
+    {/* <Button
       title="Submit"
       onPress={() => handleTaskAdd()}
-    />
+    /> */}
+    <TouchableOpacity
+      style={styles.button}
+      onPress={() => handleTaskAdd()}
+    >
+      <Text style={styles.buttonText}>Submit</Text>
+    </TouchableOpacity>
     <ListOfTasks
       handleTaskRemove={handleTaskRemove}
       tasks={tasks}

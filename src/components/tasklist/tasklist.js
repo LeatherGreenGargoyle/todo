@@ -1,20 +1,26 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Text, View } from 'react-native'
+import { Text, ScrollView } from 'react-native'
 import List from '../list'
+import styles from './style'
 
 const TaskList = ({
   handleListSelect,
   taskAndListTuples,
 }) => (
-  <View>
+  <ScrollView>
+    <Text style={styles.header}>Click to view list</Text>
     {taskAndListTuples.map((tuple, i) => (
-      <Text key={i} onPress={() => handleListSelect(tuple[1])}>
-        {tuple[0].body}, from {tuple[1].title}
+      <Text
+        style={styles.task}
+        key={i}
+        onPress={() => handleListSelect(tuple[1])}
+      >
+        {tuple[0].body}, from list {tuple[1].title}
       </Text>
     ))}
     <List />
-  </View>
+  </ScrollView>
 )
 
 TaskList.propTypes = {

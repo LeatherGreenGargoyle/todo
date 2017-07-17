@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
   listTitle: {
     fontSize: 20,
     margin: 5,
+    marginLeft: 20,
   },
   listOfLists: {
     flex: 1,
